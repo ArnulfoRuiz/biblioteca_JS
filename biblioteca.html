@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<title>INVENTARIO BIBLIOTECA</title>
+		<meta charset="utf-8">
+		<meta name="author" content="Arnulfo Ruiz Sanchez"/>
+		<link rel="stylesheet" href="style.css">
+		<script language="JavaScript" type="text/JavaScript">
+	
+			const items = [
+				['titulo','TÍTULO'],
+				['autor','AUTOR'],
+				['edicion','EDICIÓN'],
+				['fecha_publicacion','FECHA DE PUBLICACIÓN'],
+				['num_paginas','NÚMERO DE PÁGINAS'],
+				['cant_ejsemplares','CANTIDAD DE EJEMPLARES'],
+				['editorial','EDITORIAL'],
+				['pais_publicacion','PAÍS PUBLICACIÓN'],
+				['idioma','IDIOMA']
+			];
+			
+			function validar(){	
+				var fin=0;			
+				for(var i = 0; i < items.length; i++) {
+					if(valVacio(items[i][0],items[i][1])==true){
+					break;	
+					}
+					fin=i;
+      			}
+
+				if(fin==(items.length-1)){
+					if(reconfirmar()==true)
+  					document.biblioteca.submit();
+				}
+				
+
+			}		
+    
+			function confirmar(){
+				var respuesta=confirm("¿Esta segura de querrer generar un registro?");
+				if (respuesta==true){
+					alert("Rellene el formulario");
+				}
+				else{
+					alert("Regresara a la pestaña anterior");
+					window.history.back();
+				}
+			}
+
+			function reconfirmar(){
+				var respuesta=confirm("¿Todos los valores son los deseados?");
+				if (respuesta==true){
+					alert("Se guardara en la BD");
+				}
+				else{
+					alert("Rectifique los valores");
+				}
+				return respuesta;
+			}
+
+			function valFecha() {
+				const hoy = new Date();
+				var inputs=document.biblioteca.fecha_publicacion;
+				var fechaFormulario = new Date(inputs.value.replaceAll('-','/'));
+				if (fechaFormulario > hoy){
+					window.alert("NO SE PUEDEN FECHAS FUTURAS");
+					var day = hoy.getDate();
+					var month = hoy.getMonth() + 1;
+					var year = hoy.getFullYear();
+					var today=year+"-"+month+"-"+day;
+					inputs.value = today;
+				}
+			}
+
+			function valVacio(id,label) {
+				var inputs=document.getElementById(id);
+				if(inputs.value==""){
+					window.alert("NO DEJE EL CAMPO "+label+" VACIO");
+					return true;
+				}
+			}
+
+			function valPositivos(id,label) {
+				var inputs=document.getElementById(id);
+				if(inputs.value<=0 && inputs.value!=""){
+					window.alert("EL CAMPO "+label+" MAYOR A 0");
+					inputs.value=1;
+				}
+			}
+			</script>
+	</head>
+	<body onload="confirmar()">
+		<div id="agrupar">
+			<header id="cabecera">
+				<h1>REGISTRO DE LIBRO</h1>
+			</header>
+			<section id="seccion">
+				<form name='biblioteca' method='post' enctype="multipart/form-data" action='agregar_libro.php'>
+					TÍTULO: <input name='titulo' type='text' id='titulo' size='83' maxlength='100' onchange="valVacio('titulo','TÍTULO');" value='HARRY POTTER Y LA PIEDRA FILOSOFAL'> 
+					AUTOR: <input name='autor' value='J. K. ROWLING' type='text' id='autor' onchange="valVacio('autor','AUTOR');" size='44' maxlength='100'>
+					EDICIÓN: <input name='edicion' type='number' id='edicion' value='1' min="1" onchange="valVacio('edicion','EDICIÓN'),valPositivos('edicion','EDICIÓN')"  pattern="^[0-9]+" ></br>
+					FECHA DE PUBLICACIÓN: <input type="date" name="fecha_publicacion"  onchange="valFecha	();" id="fecha_publicacion">
+					NÚMERO DE PÁGINAS: <input name='num_paginas' type='text' id='num_paginas' onchange="valVacio('num_paginas','NÚMERO DE PÁGINAS'),valPositivos('num_paginas','NÚMERO DE PÁGINAS')" size='17' maxlength='100' value='300'> </br>
+					CANTIDAD DE EJEMPLARES: <input name='cant_ejemplares' type='text' id='cant_ejsemplares' onchange="valVacio('cant_ejsemplares','CANTIDAD DE EJEMPLARES'),valPositivos('cant_ejsemplares','CANTIDAD DE EJEMPLARES')" size='5' maxlength='100' value='3' > 
+					EDITORIAL: <input name='editorial' type='text' id='editorial' size='36' onchange="valVacio('editorial','EDITORIAL');" maxlength='100' value='Océano Gran Travesía' > <br>
+					TIPO DE LIBRO: <select name="tipo_libro" id="tipo_libro">
+						  <option>Novela</option>
+						  <option>Cuento</option>
+						  <option>Cómic</option>
+						  <option>Manga</option>
+						  <option>Biografía</option>
+						  <option>Libros escolars</option>
+					     </select>
+					TEMA DEL LIBRO: <select name="tema_libro" id="tema_libro" >
+						<option>Ciencia Ficción</option>
+						<option>Romance</option>
+						<option>Horror</option>
+						<option>Poesía</option>
+						<option>Didáctico</option>
+						 </select>
+					ESTADO: <select name="estado_libro" id="estado_libro" >
+						<option>Nuevo</option>
+						<option>Usado</option>
+						 </select></br>
+					PAÍS PUBLICACIÓN: <input name='pais_publicacion' type='text' id='pais_publicacion' onchange="valVacio('pais_publicacion','PAÍS PUBLICACIÓN');" size='30' maxlength='100' value='México' > 
+					IDIOMA: <input name='idioma' type='text' id='idioma' size='23' maxlength='100' onchange="valVacio('idioma','IDIOMA');" value='Español' > </br> </br>
+					<input name='registrar' type='button' id='registrar' onclick="validar();"  value='CAPTURAR INFORMACIÓN'>
+				</form>
+				</section>
+				<footer id="pie">
+					Derechos Reservados &copy; 2021 Arnulfo Ruiz Sanchez 7'O'
+				</footer>
+		</div>
+	</body>
+</html>

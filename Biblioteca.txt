@@ -1,0 +1,25 @@
+DROP DATABASE IF EXISTS biblioteca;
+
+CREATE DATABASE biblioteca;
+use biblioteca;
+
+create table libro
+( 
+    id_libro int auto_increment not null,
+    titulo varchar(100),
+    autor varchar(100),
+    edicion int(2),
+    fecha_publicacion date,
+    num_paginas int(4),
+    cant_ejemplares int(4),
+    editorial varchar(100),
+    tipo_libro varchar(50),
+    tema_libro varchar(50),
+    estado_libro varchar(50),
+    pais_publicacion varchar(50),
+    idioma varchar(50),
+  primary key (id_libro)  
+);
+
+insert libro values('','El VELO DE LA NOVIA','JUAN PEREZ VELAZQUES','1','2020-10-02','345','10','Editorial Generica','Novela','Ciencia Ficción','Nuevo','Reino Unido','Español');
+

@@ -1,0 +1,82 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+h1 {
+	font: bold 30px Yu Gothic Light, sans-serif;
+	color: #FFFFFF;
+}
+
+header, section, footer{
+display: block;
+}
+
+body{
+	background-image: url("https://www.unla.mx/assets/images/experiencia/biblioteca-principal.png");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	text-align: center;
+}
+
+form {
+	font: bold 14px Arial, sans-serif;
+	color:#FFFFFF;
+}
+
+#agrupar {
+	width: 750px;
+	margin: 15px auto;
+	text-align: left;
+	border: 1px;
+	background: #000000;
+	opacity: 0.8;
+}
+
+#cabecera {
+	background: #004D40  ;
+	opacity: 0.8;
+	border: 1px solid #004D40  ;
+	padding: 10px;
+	text-align: center;
+}
+
+#seccion {
+float: left;
+margin: 20px;
+}
+
+#pie {
+clear: both;
+text-align: center;
+margin: 20px;
+padding: 20px;
+color: #FFFFFF;
+}
+
+input {
+	margin: 10px;
+	padding: 5px;
+	background: #312f2f;
+	color: #FFFFFF;
+}
+
+select {
+	margin: 10px;
+	padding: 5px;
+	background: #5d5e59;
+	border: 1px solid #a59d9d;
+	color: #FFFFFF;
+}
+
+#registrar {
+	background: #004D40;
+	padding: 10px;
+	color: #FFFFFF;
+	border: 1px solid #004D40;
+	display: inline-block;	
+  	margin-left: 35%;
+}
+
+
